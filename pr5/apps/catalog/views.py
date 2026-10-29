@@ -7,7 +7,6 @@ from .serializers import AuthorSerializer, BookSerializer
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
-
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     filter_backends = [filters.SearchFilter]
@@ -15,7 +14,6 @@ class AuthorViewSet(viewsets.ModelViewSet):
 
 
 class BookViewSet(viewsets.ModelViewSet):
-
     queryset = Book.objects.select_related("author").all()
     serializer_class = BookSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]

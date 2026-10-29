@@ -7,7 +7,6 @@ from .serializers import LoanSerializer
 
 
 class LoanViewSet(viewsets.ModelViewSet):
-
     queryset = Loan.objects.select_related("reader", "book", "librarian").all()
     serializer_class = LoanSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
@@ -16,7 +15,6 @@ class LoanViewSet(viewsets.ModelViewSet):
     ordering_fields = ["created_at", "due_date"]
 
     def perform_create(self, serializer):
-
         serializer.save(librarian=self.request.user)
 
     def _do(self, request, pk, method, allowed):

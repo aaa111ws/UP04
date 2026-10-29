@@ -10,7 +10,6 @@ from apps.readers.models import Reader
 
 
 class ReportService:
-
     @staticmethod
     def kpi(days: int = 30) -> dict:
         since = timezone.now() - timedelta(days=days)

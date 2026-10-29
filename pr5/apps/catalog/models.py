@@ -3,7 +3,6 @@ from django.urls import reverse
 
 
 class Author(models.Model):
-
     name = models.CharField("ФИО автора", max_length=100, unique=True)
     country = models.CharField("Страна", max_length=50, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -18,7 +17,6 @@ class Author(models.Model):
 
 
 class Book(models.Model):
-
     class Status(models.TextChoices):
         AVAILABLE = "available", "В фонде"
         RESERVED = "reserved", "Забронирована"

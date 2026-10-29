@@ -13,7 +13,6 @@ FINE_PER_DAY = 5
 
 
 class Loan(models.Model):
-
     class LoanType(models.TextChoices):
         HOME = "home", "На дом"
         HALL = "hall", "В читальный зал"

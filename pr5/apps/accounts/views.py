@@ -8,7 +8,6 @@ from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
 
 
 class RegisterView(APIView):
-
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -26,7 +25,6 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
-
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -43,7 +41,6 @@ class LoginView(APIView):
 
 
 class MeView(APIView):
-
     permission_classes = [IsAuthenticated]
 
     def get(self, request):

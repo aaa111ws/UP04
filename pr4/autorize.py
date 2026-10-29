@@ -16,7 +16,6 @@ STAFF = {
 
 
 class LoginWindow:
-
     def __init__(self, root: tk.Tk):
         self.root = root
         self.attempts_left = MAX_ATTEMPTS

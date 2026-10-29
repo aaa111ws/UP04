@@ -3,7 +3,6 @@ from .models import Reader
 
 
 class ReaderForm(forms.ModelForm):
-
     class Meta:
         model = Reader
         fields = ["full_name", "ticket_number", "phone", "email", "group", "birth_date", "librarian"]

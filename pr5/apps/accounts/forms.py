@@ -4,7 +4,6 @@ from .models import User
 
 
 class LoginForm(AuthenticationForm):
-
     username = forms.CharField(
         label="Логин",
         widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Введите логин"}),
@@ -16,7 +15,6 @@ class LoginForm(AuthenticationForm):
 
 
 class RegisterForm(UserCreationForm):
-
     full_name = forms.CharField(label="ФИО", max_length=150)
     email = forms.EmailField(label="Email")
     phone = forms.CharField(label="Телефон", max_length=20, required=False)

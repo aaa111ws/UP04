@@ -3,7 +3,6 @@ from django.conf import settings
 
 
 class Reader(models.Model):
-
     full_name = models.CharField("ФИО", max_length=100)
     ticket_number = models.CharField("Номер читательского билета", max_length=20, unique=True)
     phone = models.CharField("Телефон", max_length=20, unique=True)

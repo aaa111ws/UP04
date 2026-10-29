@@ -3,7 +3,6 @@ from .models import Loan
 
 
 class LoanForm(forms.ModelForm):
-
     class Meta:
         model = Loan
         fields = ["reader", "book", "loan_type", "comment"]
