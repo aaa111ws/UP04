@@ -66,7 +66,6 @@ class LoginWindow:
         user = STAFF.get(login)
         if user and user["hash"] == hash_password(password):
             messagebox.showinfo("Вход выполнен", f"Здравствуйте, {login}!\nРоль: {user['role']}")
-
             return
 
         self.attempts_left -= 1
