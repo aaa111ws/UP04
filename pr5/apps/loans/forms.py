@@ -19,6 +19,6 @@ class LoanForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # Показываем только книги, которые сейчас в фонде
+
         from apps.catalog.models import Book
         self.fields["book"].queryset = Book.objects.filter(status=Book.Status.AVAILABLE)

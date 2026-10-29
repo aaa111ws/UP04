@@ -17,7 +17,7 @@ class RegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
 
-        # Сразу выдаём токены
+
         refresh = RefreshToken.for_user(user)
         return Response({
             "user": UserSerializer(user).data,

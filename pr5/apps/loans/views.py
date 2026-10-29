@@ -17,7 +17,7 @@ class LoanViewSet(viewsets.ModelViewSet):
     ordering_fields = ["created_at", "due_date"]
 
     def perform_create(self, serializer):
-        # Библиотекарь выдачи — текущий пользователь
+
         serializer.save(librarian=self.request.user)
 
     def _do(self, request, pk, method, allowed):

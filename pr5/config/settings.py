@@ -11,7 +11,7 @@ SECRET_KEY = os.getenv("SECRET_KEY", "django-insecure-change-me")
 DEBUG = os.getenv("DEBUG", "True") == "True"
 ALLOWED_HOSTS = ["*"]
 
-# ПРИЛОЖЕНИЯ
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -20,13 +20,13 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # DRF и вспомогательные
+
     "rest_framework",
     "rest_framework_simplejwt",
     "corsheaders",
     "django_filters",
 
-    # 5 МОДУЛЕЙ БИБЛИОТЕКИ
+
     "apps.accounts",
     "apps.catalog",
     "apps.readers",
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",  # CORS первым
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -47,7 +47,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "config.urls"
 
-# ШАБЛОНЫ
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -66,7 +66,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-# БАЗА ДАННЫХ
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -78,7 +78,7 @@ DATABASES = {
     }
 }
 
-# АУТЕНТИФИКАЦИЯ
+
 AUTH_USER_MODEL = "accounts.User"
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -88,11 +88,11 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# DRF — НАСТРОЙКИ API
+
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
-        "rest_framework.authentication.SessionAuthentication",  # для DRF-браузера
+        "rest_framework.authentication.SessionAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": (
         "rest_framework.permissions.IsAuthenticated",
@@ -106,18 +106,17 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 20,
 }
 
-# JWT — НАСТРОЙКИ ТОКЕНОВ
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=8),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
-# CORS — РАЗРЕШАЕМ STREAMLIT И DESKTOP
-CORS_ALLOW_ALL_ORIGINS = True  # для разработки
-# В production: CORS_ALLOWED_ORIGINS = ["http://localhost:8501"]
 
-# ПРОЧЕЕ
+CORS_ALLOW_ALL_ORIGINS = True
+
+
 LANGUAGE_CODE = "ru-ru"
 TIME_ZONE = "Europe/Moscow"
 USE_I18N = True
@@ -131,7 +130,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Логин/логаут
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"

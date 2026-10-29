@@ -1,9 +1,8 @@
-# ИМПОРТ БИБЛИОТЕК
-import hashlib                             # Для хеширования паролей
-import tkinter as tk                       # Основная библиотека для GUI
-from tkinter import messagebox            # Модуль для всплывающих окон
+import hashlib
+import tkinter as tk
+from tkinter import messagebox
 
-MAX_ATTEMPTS = 3                           # Сколько раз можно ошибиться
+MAX_ATTEMPTS = 3
 
 
 def hash_password(password: str) -> str:
@@ -11,9 +10,6 @@ def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode()).hexdigest()
 
 
-# "БАЗА ДАННЫХ" СОТРУДНИКОВ БИБЛИОТЕКИ
-# Позже будет заменена на PostgreSQL. Пароли храним только в виде хеша.
-# Тестовые учётные данные: admin / lib2026, librarian / books123
 STAFF = {
     "admin":     {"hash": hash_password("lib2026"),   "role": "Администратор"},
     "librarian": {"hash": hash_password("books123"),  "role": "Библиотекарь"},
@@ -75,7 +71,7 @@ class LoginWindow:
         user = STAFF.get(login)
         if user and user["hash"] == hash_password(password):
             messagebox.showinfo("Вход выполнен", f"Здравствуйте, {login}!\nРоль: {user['role']}")
-            # Здесь будет открываться главное окно приложения
+
             return
 
         self.attempts_left -= 1

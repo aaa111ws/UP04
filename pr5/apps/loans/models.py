@@ -8,8 +8,8 @@ from django.utils import timezone
 from apps.catalog.models import Book
 from apps.readers.models import Reader
 
-LOAN_DAYS = 14        # срок выдачи на дом
-FINE_PER_DAY = 5      # штраф за день просрочки, руб.
+LOAN_DAYS = 14
+FINE_PER_DAY = 5
 
 
 class Loan(models.Model):

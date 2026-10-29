@@ -1,5 +1,5 @@
-from django.contrib.auth.models import AbstractUser  # базовая модель пользователя
-from django.db import models                          # поля моделей
+from django.contrib.auth.models import AbstractUser
+from django.db import models
 
 
 class User(AbstractUser):
