@@ -3,7 +3,6 @@ from django.db import models
 
 
 class User(AbstractUser):
-    """Сотрудник библиотеки."""
 
     class Position(models.TextChoices):
         ADMIN = "admin", "Администратор"

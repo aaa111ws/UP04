@@ -4,7 +4,6 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
-    """Сериализатор для вывода данных пользователя."""
 
     class Meta:
         model = User
@@ -14,7 +13,6 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class RegisterSerializer(serializers.ModelSerializer):
-    """Сериализатор регистрации."""
 
     password = serializers.CharField(write_only=True, min_length=6)
     password2 = serializers.CharField(write_only=True, min_length=6)
@@ -39,7 +37,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    """Сериализатор входа."""
 
     username = serializers.CharField()
     password = serializers.CharField(write_only=True)

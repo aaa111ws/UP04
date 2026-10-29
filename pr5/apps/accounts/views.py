@@ -8,7 +8,6 @@ from .serializers import RegisterSerializer, LoginSerializer, UserSerializer
 
 
 class RegisterView(APIView):
-    """POST /api/auth/register/ — регистрация."""
 
     permission_classes = [AllowAny]
 
@@ -27,7 +26,6 @@ class RegisterView(APIView):
 
 
 class LoginView(APIView):
-    """POST /api/auth/login/ — вход."""
 
     permission_classes = [AllowAny]
 
@@ -45,7 +43,6 @@ class LoginView(APIView):
 
 
 class MeView(APIView):
-    """GET /api/auth/me/ — текущий пользователь."""
 
     permission_classes = [IsAuthenticated]
 

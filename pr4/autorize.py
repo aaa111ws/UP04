@@ -6,7 +6,6 @@ MAX_ATTEMPTS = 3
 
 
 def hash_password(password: str) -> str:
-    """Превращает пароль в хеш SHA-256."""
     return hashlib.sha256(password.encode()).hexdigest()
 
 
@@ -17,7 +16,6 @@ STAFF = {
 
 
 class LoginWindow:
-    """Окно входа в систему учёта книг."""
 
     def __init__(self, root: tk.Tk):
         self.root = root
@@ -56,11 +54,9 @@ class LoginWindow:
         root.bind("<Return>", self.check_login)
 
     def toggle_password(self):
-        """Показывает или скрывает пароль."""
         self.entry_password.config(show="" if self.show_password.get() else "*")
 
     def check_login(self, event=None):
-        """Проверяет логин и пароль; вызывается кнопкой и клавишей Enter."""
         login = self.entry_login.get().strip()
         password = self.entry_password.get()
 

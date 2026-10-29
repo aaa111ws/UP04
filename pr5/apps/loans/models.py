@@ -13,7 +13,6 @@ FINE_PER_DAY = 5
 
 
 class Loan(models.Model):
-    """Выдача: на дом, в читальный зал или бронь книги."""
 
     class LoanType(models.TextChoices):
         HOME = "home", "На дом"
@@ -64,12 +63,10 @@ class Loan(models.Model):
         )
 
     def clean(self):
-        """Выдать можно только книгу, которая сейчас в фонде."""
         if not self.pk and self.book_id and self.book.status != Book.Status.AVAILABLE:
             raise ValidationError("Эта книга сейчас недоступна для выдачи")
 
     def save(self, *args, **kwargs):
-        """Каскад: при оформлении выдачи книга резервируется."""
         if not self.pk:
             self.clean()
             self.book.status = Book.Status.RESERVED
@@ -77,7 +74,6 @@ class Loan(models.Model):
         super().save(*args, **kwargs)
 
     def issue(self):
-        """Выдать книгу читателю. Книга получает статус «Выдана»."""
         self.status = self.Status.ISSUED
         self.issued_at = timezone.now()
         if self.loan_type == self.LoanType.HOME:
@@ -89,7 +85,6 @@ class Loan(models.Model):
         self.save()
 
     def return_book(self):
-        """Принять книгу обратно с расчётом штрафа за просрочку."""
         today = timezone.localdate()
         if self.due_date and today > self.due_date:
             self.fine = (today - self.due_date).days * FINE_PER_DAY
@@ -100,7 +95,6 @@ class Loan(models.Model):
         self.save()
 
     def cancel(self):
-        """Отменить выдачу, вернуть книгу в фонд."""
         self.status = self.Status.CANCELLED
         if self.book.status == Book.Status.RESERVED:
             self.book.status = Book.Status.AVAILABLE

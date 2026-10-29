@@ -1,11 +1,8 @@
-"""МОДУЛЬ 3 (ЧИТАТЕЛИ): Формы."""
-
 from django import forms
 from .models import Reader
 
 
 class ReaderForm(forms.ModelForm):
-    """Форма регистрации/редактирования читателя."""
 
     class Meta:
         model = Reader

@@ -16,7 +16,6 @@ class ReaderSerializer(serializers.ModelSerializer):
         read_only_fields = ["created_at"]
 
     def validate_phone(self, value):
-        """Телефон читателя должен быть уникальным."""
         qs = Reader.objects.filter(phone=value)
         if self.instance:
             qs = qs.exclude(pk=self.instance.pk)

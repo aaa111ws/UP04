@@ -1,5 +1,3 @@
-"""МОДУЛЬ 4 (ВЫДАЧИ): Админка."""
-
 from django.contrib import admin
 from .models import Loan
 

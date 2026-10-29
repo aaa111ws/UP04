@@ -7,7 +7,6 @@ from .serializers import LoanSerializer
 
 
 class LoanViewSet(viewsets.ModelViewSet):
-    """CRUD для выдач + действия выдать / принять / отменить."""
 
     queryset = Loan.objects.select_related("reader", "book", "librarian").all()
     serializer_class = LoanSerializer
@@ -29,15 +28,12 @@ class LoanViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["post"])
     def issue(self, request, pk=None):
-        """POST /api/loans/{id}/issue/ — выдать книгу."""
         return self._do(request, pk, "issue", [Loan.Status.NEW])
 
     @action(detail=True, methods=["post"], url_path="return")
     def return_(self, request, pk=None):
-        """POST /api/loans/{id}/return/ — принять книгу."""
         return self._do(request, pk, "return_book", [Loan.Status.ISSUED])
 
     @action(detail=True, methods=["post"])
     def cancel(self, request, pk=None):
-        """POST /api/loans/{id}/cancel/ — отменить."""
         return self._do(request, pk, "cancel", [Loan.Status.NEW])

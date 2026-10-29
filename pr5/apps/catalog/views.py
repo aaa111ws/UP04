@@ -1,10 +1,3 @@
-"""ViewSet автоматически создаёт все CRUD-эндпоинты:
-    GET    /api/books/        — список
-    POST   /api/books/        — добавить
-    GET    /api/books/{id}/   — карточка
-    PUT    /api/books/{id}/   — изменить
-    DELETE /api/books/{id}/   — удалить"""
-
 from rest_framework import viewsets, filters
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -14,7 +7,6 @@ from .serializers import AuthorSerializer, BookSerializer
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
-    """CRUD для авторов."""
 
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
@@ -23,7 +15,6 @@ class AuthorViewSet(viewsets.ModelViewSet):
 
 
 class BookViewSet(viewsets.ModelViewSet):
-    """CRUD для книг с фильтрами и поиском."""
 
     queryset = Book.objects.select_related("author").all()
     serializer_class = BookSerializer
@@ -34,7 +25,6 @@ class BookViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=["patch"], url_path="status")
     def set_status(self, request, pk=None):
-        """PATCH /api/books/{id}/status/ — сменить статус (например, списать)."""
         book = self.get_object()
         value = request.data.get("status")
         if value not in Book.Status.values:

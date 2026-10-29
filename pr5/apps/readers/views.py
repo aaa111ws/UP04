@@ -4,7 +4,6 @@ from .serializers import ReaderSerializer
 
 
 class ReaderViewSet(viewsets.ModelViewSet):
-    """CRUD для читателей."""
 
     queryset = Reader.objects.select_related("librarian").all()
     serializer_class = ReaderSerializer

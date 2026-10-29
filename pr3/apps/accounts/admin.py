@@ -6,7 +6,6 @@ from .models import User
 
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
-    """Расширяем стандартную админку User."""
 
     list_display = ("username", "full_name", "role", "is_active")
     list_filter = ("role", "is_active")

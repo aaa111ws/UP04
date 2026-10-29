@@ -1,11 +1,8 @@
-"""МОДУЛЬ 4 (ВЫДАЧИ): Формы."""
-
 from django import forms
 from .models import Loan
 
 
 class LoanForm(forms.ModelForm):
-    """Форма оформления выдачи."""
 
     class Meta:
         model = Loan

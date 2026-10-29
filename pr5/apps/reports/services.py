@@ -10,11 +10,9 @@ from apps.readers.models import Reader
 
 
 class ReportService:
-    """Сервис отчётов по работе библиотеки."""
 
     @staticmethod
     def kpi(days: int = 30) -> dict:
-        """Главные показатели."""
         since = timezone.now() - timedelta(days=days)
         period = Loan.objects.filter(created_at__gte=since).exclude(status=Loan.Status.CANCELLED)
         fines = Loan.objects.filter(
@@ -35,7 +33,6 @@ class ReportService:
 
     @staticmethod
     def loans_by_day(days: int = 30) -> list:
-        """Количество выдач по дням."""
         since = timezone.now() - timedelta(days=days)
         rows = (
             Loan.objects.filter(created_at__gte=since)
@@ -49,7 +46,6 @@ class ReportService:
 
     @staticmethod
     def top_books(limit: int = 5) -> list:
-        """Самые востребованные книги."""
         rows = (
             Loan.objects.exclude(status=Loan.Status.CANCELLED)
             .values("book__author__name", "book__title")
@@ -63,7 +59,6 @@ class ReportService:
 
     @staticmethod
     def librarian_load(days: int = 30) -> list:
-        """Загрузка библиотекарей."""
         since = timezone.now() - timedelta(days=days)
         rows = (
             Loan.objects.filter(created_at__gte=since)
@@ -78,7 +73,6 @@ class ReportService:
 
     @staticmethod
     def stock_status() -> list:
-        """Состояние книжного фонда."""
         return [
             {"status": r["status"], "count": r["count"]}
             for r in Book.objects.values("status").annotate(count=Count("id"))
@@ -86,7 +80,6 @@ class ReportService:
 
     @staticmethod
     def overdue_list() -> list:
-        """Должники: книги, не сданные в срок."""
         rows = Loan.objects.filter(
             status=Loan.Status.ISSUED, due_date__lt=timezone.localdate(),
         ).select_related("reader", "book").order_by("due_date")

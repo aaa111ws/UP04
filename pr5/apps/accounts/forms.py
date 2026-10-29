@@ -1,12 +1,9 @@
-"""МОДУЛЬ 1 (АВТОРИЗАЦИЯ): Формы. Формы для входа и регистрации."""
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import User
 
 
 class LoginForm(AuthenticationForm):
-    """Форма входа. Стандартная, но с русскими подписями."""
 
     username = forms.CharField(
         label="Логин",
@@ -19,7 +16,6 @@ class LoginForm(AuthenticationForm):
 
 
 class RegisterForm(UserCreationForm):
-    """Форма регистрации нового сотрудника библиотеки."""
 
     full_name = forms.CharField(label="ФИО", max_length=150)
     email = forms.EmailField(label="Email")
@@ -30,7 +26,6 @@ class RegisterForm(UserCreationForm):
         fields = ("username", "full_name", "email", "phone", "position")
 
     def save(self, commit=True):
-        """Сохраняем full_name в first_name/last_name."""
         user = super().save(commit=False)
         parts = self.cleaned_data["full_name"].split(maxsplit=1)
         user.first_name = parts[0] if parts else ""
